@@ -8,80 +8,47 @@ import spring5.silinde87.gameaffinity.backend.domain.*;
 import spring5.silinde87.gameaffinity.backend.repositories.*;
 
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Optional;
+import java.util.Set;
 
 @Slf4j
 @Component
 public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent> {
 
-    private final DeveloperRepository developerRepository;
-    private final GameRepository gameRepository;
     private final GenreRepository genreRepository;
     private final PlatformRepository platformRepository;
+    private final DeveloperRepository developerRepository;
     private final ProducerRepository producerRepository;
+    private final GameRepository gameRepository;
 
-    public DataBootstrap(DeveloperRepository developerRepository, GameRepository gameRepository,
-                         GenreRepository genreRepository, PlatformRepository platformRepository,
-                         ProducerRepository producerRepository) {
-        this.developerRepository = developerRepository;
-        this.gameRepository = gameRepository;
+    public DataBootstrap(GenreRepository genreRepository, PlatformRepository platformRepository,
+                         DeveloperRepository developerRepository, ProducerRepository producerRepository,
+                         GameRepository gameRepository) {
         this.genreRepository = genreRepository;
         this.platformRepository = platformRepository;
+        this.developerRepository = developerRepository;
         this.producerRepository = producerRepository;
+        this.gameRepository = gameRepository;
     }
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         log.info("################### LOADING DATA ###################");
-        if(developerRepository.count() == 0)
-            loadDevelopers();
-
-        if(gameRepository.count() == 0)
-            loadGames();
-
         if(genreRepository.count() == 0)
             loadGenres();
 
         if(platformRepository.count() == 0)
             loadPlatforms();
 
+        if(developerRepository.count() == 0)
+            loadDevelopers();
+
         if(producerRepository.count() == 0)
             loadProducers();
-    }
 
-    private void loadDevelopers() {
-        Developer atlus = Developer.builder().name("Atlus").build();
-        Developer bizarre = Developer.builder().name("Bizarre Creations").build();
-        Developer blizzard = Developer.builder().name("Blizzard Entertainment").build();
-        Developer bungie = Developer.builder().name("Bungie").build();
-        Developer epic = Developer.builder().name("Epic Games").build();
-
-        developerRepository.save(atlus);
-        developerRepository.save(bizarre);
-        developerRepository.save(blizzard);
-        developerRepository.save(bungie);
-        developerRepository.save(epic);
-
-        log.info(developerRepository.count() + " Developers saved.");
-    }
-
-    private void loadGames() {
-        Game mario = Game.builder().name("Mario").releaseDate(LocalDate.of(2015,10,25)).build();
-        Game godOfWar = Game.builder().name("God of War").releaseDate(LocalDate.of(2018,12,20)).build();
-        Game halo = Game.builder().name("Halo").releaseDate(LocalDate.of(2017,9,10)).build();
-        Game zelda = Game.builder().name("Zelda").releaseDate(LocalDate.of(2013,4,1)).build();
-        Game forza = Game.builder().name("Forza Horizon").releaseDate(LocalDate.of(2020,6,3)).build();
-
-        gameRepository.save(mario);
-        gameRepository.save(godOfWar);
-        gameRepository.save(halo);
-        gameRepository.save(zelda);
-        gameRepository.save(forza);
-
-        log.info(gameRepository.count() + " Games saved.");
-
+        if(gameRepository.count() == 0)
+            loadGames();
     }
 
     private void loadGenres() {
@@ -118,6 +85,22 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         log.info(platformRepository.count() + " Platforms saved.");
     }
 
+    private void loadDevelopers() {
+        Developer atlus = Developer.builder().name("Atlus").build();
+        Developer bizarre = Developer.builder().name("Bizarre Creations").build();
+        Developer blizzard = Developer.builder().name("Blizzard Entertainment").build();
+        Developer bungie = Developer.builder().name("Bungie").build();
+        Developer epic = Developer.builder().name("Epic Games").build();
+
+        developerRepository.save(atlus);
+        developerRepository.save(bizarre);
+        developerRepository.save(blizzard);
+        developerRepository.save(bungie);
+        developerRepository.save(epic);
+
+        log.info(developerRepository.count() + " Developers saved.");
+    }
+
     private void loadProducers() {
         Producer eijiAonuma = Producer.builder().name("Eiji Aonuma").build();
         Producer hideoKojima = Producer.builder().name("Hideo Kojima").build();
@@ -133,5 +116,72 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
 
         log.info(producerRepository.count() + " Producers saved.");
     }
+
+
+
+    private void loadGames() {
+        Game mario = Game.builder().name("Mario").releaseDate(LocalDate.of(2015,10,25))
+                .developer(developerRepository.findAll().get(0))
+                .producer(producerRepository.findAll().get(0))
+                .build();
+
+        Set<Game> list1 = new HashSet<>();
+        list1.add(mario);
+        developerRepository.findAll().get(0).setGameList(list1);
+        producerRepository.findAll().get(0).setGameList(list1);
+
+        Game godOfWar = Game.builder().name("God of War").releaseDate(LocalDate.of(2018,12,20))
+                .developer(developerRepository.findAll().get(1))
+                .producer(producerRepository.findAll().get(1))
+                .build();
+
+        Set<Game> list2 = new HashSet<>();
+        list1.add(godOfWar);
+        developerRepository.findAll().get(1).setGameList(list2);
+        producerRepository.findAll().get(0).setGameList(list2);
+
+        Game halo = Game.builder().name("Halo").releaseDate(LocalDate.of(2017,9,10))
+                .developer(developerRepository.findAll().get(2))
+                .producer(producerRepository.findAll().get(2))
+                .build();
+
+        Set<Game> list3 = new HashSet<>();
+        list1.add(halo);
+        developerRepository.findAll().get(2).setGameList(list3);
+        producerRepository.findAll().get(0).setGameList(list3);
+
+        Game zelda = Game.builder().name("Zelda").releaseDate(LocalDate.of(2013,4,1))
+                .developer(developerRepository.findAll().get(3))
+                .producer(producerRepository.findAll().get(3))
+                .build();
+
+        Set<Game> list4 = new HashSet<>();
+        list1.add(zelda);
+        developerRepository.findAll().get(3).setGameList(list4);
+        producerRepository.findAll().get(0).setGameList(list4);
+
+        Game forza = Game.builder().name("Forza Horizon").releaseDate(LocalDate.of(2020,6,3))
+                .developer(developerRepository.findAll().get(4))
+                .producer(producerRepository.findAll().get(4))
+                .build();
+
+        Set<Game> list5 = new HashSet<>();
+        list1.add(forza);
+        developerRepository.findAll().get(4).setGameList(list5);
+        producerRepository.findAll().get(0).setGameList(list5);
+
+        gameRepository.save(mario);
+        gameRepository.save(godOfWar);
+        gameRepository.save(halo);
+        gameRepository.save(zelda);
+        gameRepository.save(forza);
+
+        log.info(gameRepository.count() + " Games saved.");
+
+    }
+
+
+
+
 
 }
