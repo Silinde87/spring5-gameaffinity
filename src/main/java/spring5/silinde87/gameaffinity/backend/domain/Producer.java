@@ -1,5 +1,6 @@
 package spring5.silinde87.gameaffinity.backend.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 import java.util.*;
 
 @Data
+@Builder
 @Document
 public class Producer {
 
@@ -17,5 +19,5 @@ public class Producer {
     @NotNull
     private String name;
 
-    private Set<Game> gameList = new HashSet<>();
+    private Set<Game> gameList;
 }

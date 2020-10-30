@@ -1,13 +1,16 @@
 package spring5.silinde87.gameaffinity.backend.domain;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.*;
 
 @Data
+@Builder
 @Document
 public class Game {
 
@@ -18,12 +21,12 @@ public class Game {
     private String name;
 
     @NotNull
-    private Date releaseDate;
+    private LocalDate releaseDate;
 
     private Developer developer;
     private Producer producer;
-    private Set<Genre> genres = new HashSet<>();
-    private Set<Platform> platforms = new HashSet<>();
+    private Set<Genre> genres;
+    private Set<Platform> platforms;
 
 
 }
