@@ -9,6 +9,7 @@ import spring5.silinde87.gameaffinity.backend.repositories.*;
 
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -63,6 +64,7 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         genreRepository.save(rpg);
         genreRepository.save(simulation);
         genreRepository.save(sports);
+
 
         log.info(genreRepository.count() + " Genres saved.");
     }
@@ -127,12 +129,10 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
                 .platform(platformRepository.findAll().get(0))
                 .build();
 
-        Set<Game> list1 = new HashSet<>();
-        list1.add(mario);
-        developerRepository.findAll().get(0).setGameList(list1);
-        producerRepository.findAll().get(0).setGameList(list1);
-        genreRepository.findAll().get(0).setGameList(list1);
-        platformRepository.findAll().get(0).setGameList(list1);
+        developerRepository.findAll().get(0).getGameList().add(mario);
+        producerRepository.findAll().get(0).getGameList().add(mario);
+        genreRepository.findAll().get(0).getGameList().add(mario);
+        platformRepository.findAll().get(0).getGameList().add(mario);
 
         Game godOfWar = Game.builder().name("God of War").releaseDate(LocalDate.of(2018,12,20))
                 .developer(developerRepository.findAll().get(1))
@@ -141,12 +141,10 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
                 .platform(platformRepository.findAll().get(1))
                 .build();
 
-        Set<Game> list2 = new HashSet<>();
-        list1.add(godOfWar);
-        developerRepository.findAll().get(1).setGameList(list2);
-        producerRepository.findAll().get(1).setGameList(list2);
-        genreRepository.findAll().get(1).setGameList(list2);
-        platformRepository.findAll().get(1).setGameList(list2);
+        developerRepository.findAll().get(1).getGameList().add(godOfWar);
+        producerRepository.findAll().get(1).getGameList().add(godOfWar);
+        genreRepository.findAll().get(1).getGameList().add(godOfWar);
+        platformRepository.findAll().get(1).getGameList().add(godOfWar);
 
         Game halo = Game.builder().name("Halo").releaseDate(LocalDate.of(2017,9,10))
                 .developer(developerRepository.findAll().get(2))
@@ -155,12 +153,10 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
                 .platform(platformRepository.findAll().get(2))
                 .build();
 
-        Set<Game> list3 = new HashSet<>();
-        list1.add(halo);
-        developerRepository.findAll().get(2).setGameList(list3);
-        producerRepository.findAll().get(2).setGameList(list3);
-        genreRepository.findAll().get(2).setGameList(list3);
-        platformRepository.findAll().get(2).setGameList(list3);
+        developerRepository.findAll().get(2).getGameList().add(halo);
+        producerRepository.findAll().get(2).getGameList().add(halo);
+        genreRepository.findAll().get(2).getGameList().add(halo);
+        platformRepository.findAll().get(2).getGameList().add(halo);
 
         Game zelda = Game.builder().name("Zelda").releaseDate(LocalDate.of(2013,4,1))
                 .developer(developerRepository.findAll().get(3))
@@ -169,12 +165,10 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
                 .platform(platformRepository.findAll().get(3))
                 .build();
 
-        Set<Game> list4 = new HashSet<>();
-        list1.add(zelda);
-        developerRepository.findAll().get(3).setGameList(list4);
-        producerRepository.findAll().get(3).setGameList(list4);
-        genreRepository.findAll().get(3).setGameList(list4);
-        platformRepository.findAll().get(3).setGameList(list4);
+        developerRepository.findAll().get(3).getGameList().add(zelda);
+        producerRepository.findAll().get(3).getGameList().add(zelda);
+        genreRepository.findAll().get(3).getGameList().add(zelda);
+        platformRepository.findAll().get(3).getGameList().add(zelda);
 
         Game forza = Game.builder().name("Forza Horizon").releaseDate(LocalDate.of(2020,6,3))
                 .developer(developerRepository.findAll().get(4))
@@ -183,12 +177,10 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
                 .platform(platformRepository.findAll().get(4))
                 .build();
 
-        Set<Game> list5 = new HashSet<>();
-        list1.add(forza);
-        developerRepository.findAll().get(4).setGameList(list5);
-        producerRepository.findAll().get(4).setGameList(list5);
-        genreRepository.findAll().get(4).setGameList(list5);
-        platformRepository.findAll().get(4).setGameList(list5);
+        developerRepository.findAll().get(4).getGameList().add(forza);
+        producerRepository.findAll().get(4).getGameList().add(forza);
+        genreRepository.findAll().get(4).getGameList().add(forza);
+        platformRepository.findAll().get(4).getGameList().add(forza);
 
         gameRepository.save(mario);
         gameRepository.save(godOfWar);
