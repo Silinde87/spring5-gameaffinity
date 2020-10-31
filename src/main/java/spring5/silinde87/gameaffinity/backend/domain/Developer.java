@@ -22,4 +22,9 @@ public class Developer {
 
     @DBRef
     private Set<Game> gameList;
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
