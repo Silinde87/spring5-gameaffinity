@@ -123,52 +123,72 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
         Game mario = Game.builder().name("Mario").releaseDate(LocalDate.of(2015,10,25))
                 .developer(developerRepository.findAll().get(0))
                 .producer(producerRepository.findAll().get(0))
+                .genre(genreRepository.findAll().get(0))
+                .platform(platformRepository.findAll().get(0))
                 .build();
 
         Set<Game> list1 = new HashSet<>();
         list1.add(mario);
         developerRepository.findAll().get(0).setGameList(list1);
         producerRepository.findAll().get(0).setGameList(list1);
+        genreRepository.findAll().get(0).setGameList(list1);
+        platformRepository.findAll().get(0).setGameList(list1);
 
         Game godOfWar = Game.builder().name("God of War").releaseDate(LocalDate.of(2018,12,20))
                 .developer(developerRepository.findAll().get(1))
                 .producer(producerRepository.findAll().get(1))
+                .genre(genreRepository.findAll().get(1))
+                .platform(platformRepository.findAll().get(1))
                 .build();
 
         Set<Game> list2 = new HashSet<>();
         list1.add(godOfWar);
         developerRepository.findAll().get(1).setGameList(list2);
-        producerRepository.findAll().get(0).setGameList(list2);
+        producerRepository.findAll().get(1).setGameList(list2);
+        genreRepository.findAll().get(1).setGameList(list2);
+        platformRepository.findAll().get(1).setGameList(list2);
 
         Game halo = Game.builder().name("Halo").releaseDate(LocalDate.of(2017,9,10))
                 .developer(developerRepository.findAll().get(2))
                 .producer(producerRepository.findAll().get(2))
+                .genre(genreRepository.findAll().get(2))
+                .platform(platformRepository.findAll().get(2))
                 .build();
 
         Set<Game> list3 = new HashSet<>();
         list1.add(halo);
         developerRepository.findAll().get(2).setGameList(list3);
-        producerRepository.findAll().get(0).setGameList(list3);
+        producerRepository.findAll().get(2).setGameList(list3);
+        genreRepository.findAll().get(2).setGameList(list3);
+        platformRepository.findAll().get(2).setGameList(list3);
 
         Game zelda = Game.builder().name("Zelda").releaseDate(LocalDate.of(2013,4,1))
                 .developer(developerRepository.findAll().get(3))
                 .producer(producerRepository.findAll().get(3))
+                .genre(genreRepository.findAll().get(3))
+                .platform(platformRepository.findAll().get(3))
                 .build();
 
         Set<Game> list4 = new HashSet<>();
         list1.add(zelda);
         developerRepository.findAll().get(3).setGameList(list4);
-        producerRepository.findAll().get(0).setGameList(list4);
+        producerRepository.findAll().get(3).setGameList(list4);
+        genreRepository.findAll().get(3).setGameList(list4);
+        platformRepository.findAll().get(3).setGameList(list4);
 
         Game forza = Game.builder().name("Forza Horizon").releaseDate(LocalDate.of(2020,6,3))
                 .developer(developerRepository.findAll().get(4))
                 .producer(producerRepository.findAll().get(4))
+                .genre(genreRepository.findAll().get(4))
+                .platform(platformRepository.findAll().get(4))
                 .build();
 
         Set<Game> list5 = new HashSet<>();
         list1.add(forza);
         developerRepository.findAll().get(4).setGameList(list5);
-        producerRepository.findAll().get(0).setGameList(list5);
+        producerRepository.findAll().get(4).setGameList(list5);
+        genreRepository.findAll().get(4).setGameList(list5);
+        platformRepository.findAll().get(4).setGameList(list5);
 
         gameRepository.save(mario);
         gameRepository.save(godOfWar);
