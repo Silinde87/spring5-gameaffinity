@@ -1,7 +1,9 @@
 package spring5.silinde87.gameaffinity.backend.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -11,6 +13,8 @@ import java.util.*;
 
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Document
 public class Developer {
 
@@ -20,8 +24,7 @@ public class Developer {
     @NotNull
     private String name;
 
-    @DBRef
-    private Set<Game> gameList;
+    private Set<Game> gameList = new HashSet<>();
 
     @Override
     public String toString() {
