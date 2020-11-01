@@ -1,0 +1,14 @@
+#Profile dev. MySQL Database
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/silinde_gameaffinity?&useTimezone=true&serverTimezone=UTC
+    username: root
+    password: xxxxxx
+    platform: mysql
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    database: mysql
+    show-sql: true
+    spring.datasource.initialization-mode: always
