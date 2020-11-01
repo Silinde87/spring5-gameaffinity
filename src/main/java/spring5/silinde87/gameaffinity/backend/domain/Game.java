@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
@@ -15,7 +16,7 @@ import java.time.LocalDate;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection = "games")
 public class Game {
 
     @Id
@@ -28,15 +29,19 @@ public class Game {
     private LocalDate releaseDate;
 
     @NotNull
+    @DBRef
     private Developer developer;
 
     @NotNull
+    @DBRef
     private Producer producer;
 
     @NotNull
+    @DBRef
     private Genre genre;
 
     @NotNull
+    @DBRef
     private Platform platform;
 
 

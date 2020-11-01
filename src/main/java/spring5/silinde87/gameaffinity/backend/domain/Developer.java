@@ -15,7 +15,7 @@ import java.util.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection = "developers")
 public class Developer {
 
     @Id
@@ -24,6 +24,7 @@ public class Developer {
     @NotNull
     private String name;
 
+    @DBRef(lazy = true)
     private Set<Game> gameList = new HashSet<>();
 
     @Override

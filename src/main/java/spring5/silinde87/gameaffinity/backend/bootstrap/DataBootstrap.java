@@ -8,10 +8,9 @@ import spring5.silinde87.gameaffinity.backend.domain.*;
 import spring5.silinde87.gameaffinity.backend.repositories.*;
 
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Component
@@ -122,6 +121,8 @@ public class DataBootstrap implements ApplicationListener<ContextRefreshedEvent>
 
 
     private void loadGames() {
+
+        //Creating Mario game
         Game mario = Game.builder().name("Mario").releaseDate(LocalDate.of(2015,10,25))
                 .developer(developerRepository.findAll().get(0))
                 .producer(producerRepository.findAll().get(0))

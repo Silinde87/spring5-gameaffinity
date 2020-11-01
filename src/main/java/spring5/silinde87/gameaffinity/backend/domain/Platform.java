@@ -16,7 +16,7 @@ import java.util.Set;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document
+@Document(collection = "platforms")
 public class Platform {
 
     @Id
@@ -28,6 +28,7 @@ public class Platform {
     @NotNull
     private String brand;
 
+    @DBRef(lazy = true)
     private Set<Game> gameList = new HashSet<>();
 
     @Override
