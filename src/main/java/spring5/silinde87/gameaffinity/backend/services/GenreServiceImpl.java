@@ -1,12 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import spring5.silinde87.gameaffinity.backend.domain.Genre;
 import spring5.silinde87.gameaffinity.backend.repositories.GenreRepository;
 
-import java.util.Collection;
+import java.util.*;
 
-@Repository
+@Service
 public class GenreServiceImpl implements GenreService {
 
     private final GenreRepository genreRepository;
@@ -16,13 +16,15 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Collection<Genre> findAll() {
-        return genreRepository.findAll();
+    public Set<Genre> findAll() {
+        Set<Genre> genreSet = new HashSet<>();
+        genreRepository.findAll().iterator().forEachRemaining(genreSet::add);
+        return genreSet;
     }
 
     @Override
     public Genre add(Genre genre) {
-        return genreRepository.insert(genre);
+        return genreRepository.save(genre);
     }
 
     @Override

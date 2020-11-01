@@ -1,26 +1,23 @@
 package spring5.silinde87.gameaffinity.backend.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "platforms")
+@EqualsAndHashCode(exclude = {"gameList"})
+@Entity
 public class Platform {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     private String name;
@@ -28,7 +25,7 @@ public class Platform {
     @NotNull
     private String brand;
 
-    @DBRef(lazy = true)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform", fetch = FetchType.EAGER)
     private Set<Game> gameList = new HashSet<>();
 
     @Override

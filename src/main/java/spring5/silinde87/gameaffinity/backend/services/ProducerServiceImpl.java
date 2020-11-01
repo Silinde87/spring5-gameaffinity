@@ -1,12 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import spring5.silinde87.gameaffinity.backend.domain.Producer;
 import spring5.silinde87.gameaffinity.backend.repositories.ProducerRepository;
 
-import java.util.Collection;
+import java.util.*;
 
-@Repository
+@Service
 public class ProducerServiceImpl implements ProducerService {
 
     private final ProducerRepository producerRepository;
@@ -16,13 +16,15 @@ public class ProducerServiceImpl implements ProducerService {
     }
 
     @Override
-    public Collection<Producer> findAll() {
-        return producerRepository.findAll();
+    public Set<Producer> findAll() {
+        Set<Producer> producerSet = new HashSet<>();
+        producerRepository.findAll().iterator().forEachRemaining(producerSet::add);
+        return producerSet;
     }
 
     @Override
     public Producer add(Producer producer) {
-        return producerRepository.insert(producer);
+        return producerRepository.save(producer);
     }
 
     @Override

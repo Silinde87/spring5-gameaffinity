@@ -1,11 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.repositories;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.CrudRepository;
 import spring5.silinde87.gameaffinity.backend.domain.Platform;
 
 import java.util.*;
 
-public interface PlatformRepository extends MongoRepository<Platform, String> {
+public interface PlatformRepository extends CrudRepository<Platform, Long> {
+
     Optional<Platform> findByName(String name);
     Optional<Platform> findByBrand(String brand);
 }

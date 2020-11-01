@@ -1,12 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import spring5.silinde87.gameaffinity.backend.domain.Game;
 import spring5.silinde87.gameaffinity.backend.repositories.GameRepository;
 
-import java.util.Collection;
+import java.util.*;
 
-@Repository
+@Service
 public class GameServiceImpl implements GameService {
 
     private final GameRepository gameRepository;
@@ -16,13 +16,15 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Collection<Game> findAll() {
-        return gameRepository.findAll();
+    public Set<Game> findAll() {
+        Set<Game> gameSet = new HashSet<>();
+        gameRepository.findAll().iterator().forEachRemaining(gameSet::add);
+        return gameSet;
     }
 
     @Override
     public Game add(Game game) {
-        return gameRepository.insert(game);
+        return gameRepository.save(game);
     }
 
     @Override

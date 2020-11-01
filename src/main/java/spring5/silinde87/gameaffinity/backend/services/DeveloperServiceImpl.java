@@ -1,12 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import spring5.silinde87.gameaffinity.backend.domain.Developer;
 import spring5.silinde87.gameaffinity.backend.repositories.DeveloperRepository;
 
-import java.util.Collection;
+import java.util.*;
 
-@Repository
+@Service
 public class DeveloperServiceImpl implements DeveloperService {
 
     private final DeveloperRepository developerRepository;
@@ -17,12 +17,14 @@ public class DeveloperServiceImpl implements DeveloperService {
 
     @Override
     public Collection<Developer> findAll() {
-        return developerRepository.findAll();
+        Set<Developer> developerSet = new HashSet<>();
+        developerRepository.findAll().iterator().forEachRemaining(developerSet::add);
+        return developerSet;
     }
 
     @Override
     public Developer add(Developer developer) {
-        return developerRepository.insert(developer);
+        return developerRepository.save(developer);
     }
 
     @Override

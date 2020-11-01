@@ -1,26 +1,23 @@
 package spring5.silinde87.gameaffinity.backend.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import lombok.*;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
-import java.time.LocalDate;
+
+import java.time.*;
 
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "games")
+@Entity
 public class Game {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     private String name;
@@ -29,19 +26,19 @@ public class Game {
     private LocalDate releaseDate;
 
     @NotNull
-    @DBRef
+    @ManyToOne
     private Developer developer;
 
     @NotNull
-    @DBRef
+    @ManyToOne
     private Producer producer;
 
     @NotNull
-    @DBRef
+    @ManyToOne
     private Genre genre;
 
     @NotNull
-    @DBRef
+    @ManyToOne
     private Platform platform;
 
 

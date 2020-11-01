@@ -1,12 +1,12 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import spring5.silinde87.gameaffinity.backend.domain.Platform;
 import spring5.silinde87.gameaffinity.backend.repositories.PlatformRepository;
 
-import java.util.Collection;
+import java.util.*;
 
-@Repository
+@Service
 public class PlatformServiceImpl implements PlatformService {
 
     private final PlatformRepository platformRepository;
@@ -16,13 +16,15 @@ public class PlatformServiceImpl implements PlatformService {
     }
 
     @Override
-    public Collection<Platform> findAll() {
-        return platformRepository.findAll();
+    public Set<Platform> findAll() {
+        Set<Platform> platformSet = new HashSet<>();
+        platformRepository.findAll().iterator().forEachRemaining(platformSet::add);
+        return platformSet;
     }
 
     @Override
     public Platform add(Platform platform) {
-        return platformRepository.insert(platform);
+        return platformRepository.save(platform);
     }
 
     @Override
