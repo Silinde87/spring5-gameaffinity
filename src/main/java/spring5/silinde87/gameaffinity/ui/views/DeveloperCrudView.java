@@ -32,7 +32,7 @@ public class DeveloperCrudView extends HorizontalLayout {
             Set<Game> game = developer.getGameList();
             return game.size() == 0 ? "-" : game.stream().map(Game::getName).collect(Collectors.joining(", "));
         }).setHeader("Game List");
-        crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true));
+        crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true).setSortable(true));
 
         //Form Configuration
         crud.getCrudFormFactory().setUseBeanValidation(true);

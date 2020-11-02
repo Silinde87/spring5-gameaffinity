@@ -28,7 +28,8 @@ public class GameCrudView extends HorizontalLayout {
 
         //Grid Configuration
         crud.getGrid().setColumns("name", "developer", "producer", "genre", "platform", "releaseDate");
-        crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true));
+        crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true).setSortable(true));
+
 
 
         //Form Configuration
