@@ -21,7 +21,6 @@ public class GenreCrudView extends HorizontalLayout {
     private GenreServiceImpl genreService;
     private GameServiceImpl gameService;
 
-
     public GenreCrudView(GenreServiceImpl genreService, GameServiceImpl gameService){
         this.genreService = genreService;
         this.gameService = gameService;

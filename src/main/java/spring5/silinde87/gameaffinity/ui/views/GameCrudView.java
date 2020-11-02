@@ -1,14 +1,11 @@
 package spring5.silinde87.gameaffinity.ui.views;
 
-import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
-import org.vaadin.crudui.crud.CrudOperation;
 import org.vaadin.crudui.crud.impl.GridCrud;
-import org.vaadin.crudui.form.CrudFormFactory;
 import org.vaadin.crudui.form.impl.field.provider.ComboBoxProvider;
 import spring5.silinde87.gameaffinity.backend.domain.*;
 import spring5.silinde87.gameaffinity.backend.services.*;
@@ -63,7 +60,6 @@ public class GameCrudView extends HorizontalLayout {
 
         //Layout Configuration
         add(crud);
-        //crud.setFindAllOperationVisible(false);
         setSizeFull();
 
         //Logic Configuration
