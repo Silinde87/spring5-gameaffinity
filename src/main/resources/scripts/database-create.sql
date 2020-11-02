@@ -5,7 +5,7 @@ drop table if exists genre CASCADE;
 drop table if exists platform CASCADE;
 drop table if exists producer CASCADE;
 create table developer (id bigint not null auto_increment, name varchar(255) not null, primary key (id));
-create table game (id bigint not null auto_increment, name varchar(255) not null, release_date date, developer_id bigint not null, genre_id bigint not null, platform_id bigint not null, producer_id bigint not null, primary key (id));
+create table game (id bigint not null auto_increment, name varchar(255) not null, release_date date, developer_id bigint, genre_id bigint, platform_id bigint, producer_id bigint, primary key (id));
 create table genre (id bigint not null auto_increment, name varchar(255) not null, primary key (id));
 create table platform (id bigint not null auto_increment, brand varchar(255) not null, name varchar(255) not null, primary key (id));
 create table producer (id bigint not null auto_increment, name varchar(255) not null, primary key (id));
