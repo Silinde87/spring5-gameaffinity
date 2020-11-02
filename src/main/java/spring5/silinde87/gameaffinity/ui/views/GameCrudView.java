@@ -11,9 +11,6 @@ import spring5.silinde87.gameaffinity.backend.domain.*;
 import spring5.silinde87.gameaffinity.backend.services.*;
 import spring5.silinde87.gameaffinity.ui.MainView;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-
 @Route(value = "games", layout = MainView.class)
 @PageTitle("Games List")
 @RouteAlias(value = "", layout = MainView.class)
@@ -29,8 +26,6 @@ public class GameCrudView extends HorizontalLayout {
         //Grid Configuration
         crud.getGrid().setColumns("name", "developer", "producer", "genre", "platform", "releaseDate");
         crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true).setSortable(true));
-
-
 
         //Form Configuration
         crud.getCrudFormFactory().setUseBeanValidation(true);
