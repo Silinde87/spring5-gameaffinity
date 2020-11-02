@@ -3,6 +3,7 @@ package spring5.silinde87.gameaffinity.backend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
@@ -20,13 +21,13 @@ public class Platform {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @NotNull
+    @NotEmpty
     private String brand;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "platform", orphanRemoval = true)
+    @OneToMany(mappedBy = "platform")
     private Set<Game> gameList = new HashSet<>();
 
     @Override

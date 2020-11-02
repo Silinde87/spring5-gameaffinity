@@ -3,6 +3,7 @@ package spring5.silinde87.gameaffinity.backend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
@@ -20,10 +21,11 @@ public class Developer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
+    @Column(name = "name")
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "developer", orphanRemoval = true)
+    @OneToMany(mappedBy = "developer")
     private Set<Game> gameList = new HashSet<>();
 
     @Override

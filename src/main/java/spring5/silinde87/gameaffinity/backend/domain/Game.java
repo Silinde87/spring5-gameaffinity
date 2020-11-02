@@ -3,6 +3,8 @@ package spring5.silinde87.gameaffinity.backend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import java.time.LocalDate;
@@ -20,12 +22,13 @@ public class Game {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     @Column(name = "name")
     private String name;
 
 
-    @Past
+    @Past(message = "fecha debe ser anterior a la actual")
+    @NotNull(message = "no puede estar vacío")
     @Column(name = "release_date")
     private LocalDate releaseDate;
 

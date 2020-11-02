@@ -3,6 +3,7 @@ package spring5.silinde87.gameaffinity.backend.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import java.util.*;
@@ -20,10 +21,10 @@ public class Producer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull
+    @NotEmpty
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "producer", orphanRemoval = true)
+    @OneToMany(mappedBy = "producer")
     private Set<Game> gameList = new HashSet<>();
 
     @Override

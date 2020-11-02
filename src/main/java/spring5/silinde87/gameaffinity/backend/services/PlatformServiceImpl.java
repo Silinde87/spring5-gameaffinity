@@ -1,7 +1,9 @@
 package spring5.silinde87.gameaffinity.backend.services;
 
 import org.springframework.stereotype.Service;
+import spring5.silinde87.gameaffinity.backend.domain.Game;
 import spring5.silinde87.gameaffinity.backend.domain.Platform;
+import spring5.silinde87.gameaffinity.backend.repositories.GameRepository;
 import spring5.silinde87.gameaffinity.backend.repositories.PlatformRepository;
 
 import java.util.*;
@@ -10,9 +12,11 @@ import java.util.*;
 public class PlatformServiceImpl implements PlatformService {
 
     private final PlatformRepository platformRepository;
+    private final GameRepository gameRepository;
 
-    public PlatformServiceImpl(PlatformRepository platformRepository) {
+    public PlatformServiceImpl(PlatformRepository platformRepository, GameRepository gameRepository) {
         this.platformRepository = platformRepository;
+        this.gameRepository = gameRepository;
     }
 
     @Override
@@ -34,6 +38,12 @@ public class PlatformServiceImpl implements PlatformService {
 
     @Override
     public void delete(Platform platform) {
+        for (Game game : gameRepository.findAll()){
+            if(game.getPlatform().getName().equals(platform.getName())){
+                game.setPlatform(null);
+                gameRepository.save(game);
+            }
+        }
         platformRepository.delete(platform);
     }
 }

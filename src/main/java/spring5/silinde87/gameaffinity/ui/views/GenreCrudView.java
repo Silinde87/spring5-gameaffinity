@@ -17,7 +17,6 @@ import java.util.stream.Collectors;
 @PageTitle("Genres List")
 public class GenreCrudView extends HorizontalLayout {
 
-
     private GenreServiceImpl genreService;
     private GameServiceImpl gameService;
 
@@ -31,8 +30,9 @@ public class GenreCrudView extends HorizontalLayout {
         crud.getGrid().setColumns("name");
         crud.getGrid().addColumn(genre -> {
             Set<Game> game = genre.getGameList();
-            return game == null ? "-" : game.stream().map(Game::getName).collect(Collectors.joining(", "));
+            return game.size() == 0 ? "-" : game.stream().map(Game::getName).collect(Collectors.joining(", "));
         }).setHeader("Game List");
+        crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true));
 
         //Form Configuration
         crud.getCrudFormFactory().setUseBeanValidation(true);
