@@ -31,7 +31,8 @@ public class GameCrudView extends HorizontalLayout {
         crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true));
 
         //Form Configuration
-        crud.getCrudFormFactory().setUseBeanValidation(false);
+        crud.getCrudFormFactory().setUseBeanValidation(true);
+
         crud.getCrudFormFactory().setVisibleProperties(
                 "name","developer", "producer", "genre", "platform", "releaseDate");
 
