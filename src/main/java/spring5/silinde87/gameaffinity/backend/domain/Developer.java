@@ -13,6 +13,7 @@ import java.util.*;
 @AllArgsConstructor
 @EqualsAndHashCode(exclude = {"gameList"})
 @Entity
+@Table(name = "developer")
 public class Developer {
 
     @Id
@@ -22,7 +23,7 @@ public class Developer {
     @NotNull
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "developer", fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "developer", orphanRemoval = true)
     private Set<Game> gameList = new HashSet<>();
 
     @Override

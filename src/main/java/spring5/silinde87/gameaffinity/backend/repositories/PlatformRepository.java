@@ -1,11 +1,11 @@
 package spring5.silinde87.gameaffinity.backend.repositories;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 import spring5.silinde87.gameaffinity.backend.domain.Platform;
 
 import java.util.*;
 
-public interface PlatformRepository extends CrudRepository<Platform, Long> {
+public interface PlatformRepository extends JpaRepository<Platform, Long> {
 
     Optional<Platform> findByName(String name);
     Optional<Platform> findByBrand(String brand);
