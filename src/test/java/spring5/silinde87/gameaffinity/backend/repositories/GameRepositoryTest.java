@@ -26,24 +26,21 @@ class GameRepositoryTest {
     @InjectMocks
     GameServiceImpl service;
 
-    List<Game> listGame;
+    Game returnGame;
 
     @BeforeEach
     void setUp() {
-        listGame = new ArrayList<>();
-        listGame.add(Game.builder().id(1L).name(GAME_NAME).releaseDate(LocalDate.now()).build());
-        listGame.add(Game.builder().id(2L).name(GAME_NAME).releaseDate(LocalDate.now()).build());
+        returnGame = Game.builder().id(1L).name(GAME_NAME).releaseDate(LocalDate.now()).build();
+
     }
 
     @Test
     void findByName() {
+        when(gameRepository.findByName(any())).thenReturn(returnGame);
 
-        when(gameRepository.findByName(any())).thenReturn(listGame);
+        Game game = service.findByName(GAME_NAME);
 
-        List<Game> marioList = service.findByName(GAME_NAME);
-
-        assertEquals(GAME_NAME, marioList.get(0).getName());
-        assertEquals(2, marioList.size());
+        assertEquals(GAME_NAME, game.getName());
 
         verify(gameRepository).findByName(any());
     }
