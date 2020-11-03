@@ -7,7 +7,6 @@ import spring5.silinde87.gameaffinity.backend.repositories.GameRepository;
 import spring5.silinde87.gameaffinity.backend.repositories.GenreRepository;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 @Service
 public class GenreServiceImpl implements GenreService {

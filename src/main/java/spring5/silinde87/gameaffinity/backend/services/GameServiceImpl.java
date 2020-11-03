@@ -23,7 +23,7 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public List<Game> findByName(String name) {
+    public Game findByName(String name) {
         return gameRepository.findByName(name);
     }
 
