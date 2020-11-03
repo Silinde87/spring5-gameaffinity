@@ -8,5 +8,5 @@ import java.util.*;
 public interface PlatformRepository extends JpaRepository<Platform, Long> {
 
     Optional<Platform> findByName(String name);
-    Optional<Platform> findByBrand(String brand);
+    List<Platform> findByBrand(String brand);
 }
