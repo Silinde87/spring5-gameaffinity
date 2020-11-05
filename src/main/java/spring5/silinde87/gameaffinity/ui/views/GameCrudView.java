@@ -1,5 +1,6 @@
 package spring5.silinde87.gameaffinity.ui.views;
 
+import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.TextRenderer;
@@ -8,6 +9,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import org.vaadin.crudui.crud.impl.GridCrud;
 import org.vaadin.crudui.form.impl.field.provider.ComboBoxProvider;
+import org.vaadin.crudui.layout.impl.HorizontalSplitCrudLayout;
 import spring5.silinde87.gameaffinity.backend.domain.*;
 import spring5.silinde87.gameaffinity.backend.services.*;
 import spring5.silinde87.gameaffinity.ui.MainView;
@@ -15,14 +17,16 @@ import spring5.silinde87.gameaffinity.ui.MainView;
 @Route(value = "games", layout = MainView.class)
 @PageTitle("Games List")
 @RouteAlias(value = "", layout = MainView.class)
-public class GameCrudView extends HorizontalLayout {
+public class  GameCrudView extends HorizontalLayout {
 
     public GameCrudView(GameServiceImpl gameService, DeveloperServiceImpl developerService,
                         ProducerServiceImpl producerService, GenreServiceImpl genreService,
                         PlatformServiceImpl platformService){
 
         //Crud Instance
-        GridCrud<Game> crud = new GridCrud<>(Game.class);
+        GridCrud<Game> crud = new GridCrud<>(Game.class, new HorizontalSplitCrudLayout());
+        crud.setClickRowToUpdate(true);
+        crud.setUpdateOperationVisible(false);
 
         //Additional components
         TextField filter = new TextField();
@@ -66,8 +70,9 @@ public class GameCrudView extends HorizontalLayout {
 
 
         //Layout Configuration
-        add(crud);
         setSizeFull();
+        add(crud);
+
 
         //Logic Configuration
         crud.setOperations(

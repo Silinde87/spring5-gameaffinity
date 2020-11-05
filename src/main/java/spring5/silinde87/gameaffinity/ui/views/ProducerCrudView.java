@@ -5,6 +5,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import org.vaadin.crudui.crud.impl.GridCrud;
+import org.vaadin.crudui.layout.impl.HorizontalSplitCrudLayout;
 import spring5.silinde87.gameaffinity.backend.domain.Developer;
 import spring5.silinde87.gameaffinity.backend.domain.Game;
 import spring5.silinde87.gameaffinity.backend.domain.Producer;
@@ -26,7 +27,9 @@ public class ProducerCrudView extends HorizontalLayout {
         this.producerService = producerService;
         this.gameService = gameService;
 
-        GridCrud<Producer> crud = new GridCrud<>(Producer.class, producerService);
+        GridCrud<Producer> crud = new GridCrud<>(Producer.class, new HorizontalSplitCrudLayout());
+        crud.setClickRowToUpdate(true);
+        crud.setUpdateOperationVisible(false);
 
         //Grid Configuration
         crud.getGrid().setColumns("name");
