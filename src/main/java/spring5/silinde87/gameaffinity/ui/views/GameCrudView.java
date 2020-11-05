@@ -1,6 +1,7 @@
 package spring5.silinde87.gameaffinity.ui.views;
 
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -22,6 +23,12 @@ public class GameCrudView extends HorizontalLayout {
 
         //Crud Instance
         GridCrud<Game> crud = new GridCrud<>(Game.class);
+
+        //Additional components
+        TextField filter = new TextField();
+        filter.setPlaceholder("Filter by name");
+        filter.setClearButtonVisible(true);
+        crud.getCrudLayout().addFilterComponent(filter);
 
         //Grid Configuration
         crud.getGrid().setColumns("name", "developer", "producer", "genre", "platform", "releaseDate");
@@ -64,10 +71,12 @@ public class GameCrudView extends HorizontalLayout {
 
         //Logic Configuration
         crud.setOperations(
-                () -> gameService.findAll(),
+                () -> gameService.findByNameContainingIgnoreCase(filter.getValue()),
                 game -> gameService.add(game),
                 game -> gameService.update(game),
                 game -> gameService.delete(game)
         );
+
+        filter.addValueChangeListener(e -> crud.refreshGrid());
     }
 }

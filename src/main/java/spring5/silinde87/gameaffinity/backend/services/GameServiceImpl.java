@@ -23,8 +23,14 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game findByName(String name) {
-        return gameRepository.findByName(name);
+    public Set<Game> findByNameContainingIgnoreCase(String name) {
+        if(name.length() == 0){
+            Set<Game> gameSet = new HashSet<>();
+            gameRepository.findAll().iterator().forEachRemaining(gameSet::add);
+            return gameSet;
+        }else {
+            return gameRepository.findByNameContainingIgnoreCase(name);
+        }
     }
 
     @Override

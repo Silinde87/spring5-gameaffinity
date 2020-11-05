@@ -35,14 +35,17 @@ class GameRepositoryTest {
     }
 
     @Test
-    void findByName() {
-        when(gameRepository.findByName(any())).thenReturn(returnGame);
+    void findByNameContainingIgnoreCase() {
+        Set<Game> returnGames = new HashSet<>();
+        returnGames.add(Game.builder().name("Mario").build());
 
-        Game game = service.findByName(GAME_NAME);
+        when(gameRepository.findByNameContainingIgnoreCase(any())).thenReturn(returnGames);
 
-        assertEquals(GAME_NAME, game.getName());
+        Set<Game> game = service.findByNameContainingIgnoreCase(GAME_NAME);
 
-        verify(gameRepository).findByName(any());
+        assertEquals(GAME_NAME, game.iterator().next().getName());
+
+        verify(gameRepository).findByNameContainingIgnoreCase(any());
     }
 
 
