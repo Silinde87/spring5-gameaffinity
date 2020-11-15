@@ -71,16 +71,11 @@ Features:
 $ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
 ```
 * Create and configure the DB using the scripts included in repository.
-
-
-
-
->* [MySQL Configuration](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/scripts/configure-mysql.sql)
-
->* [MySQL Table Creation](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/scripts/database-create.sql)
+  * [MySQL Configuration](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/scripts/configure-mysql.sql)
+  * [MySQL Table Creation](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/scripts/database-create.sql)
 
 * Populate the Database with some demo information about Genres, Platforms, developers and Producers.
->* [Demo data Query](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/data-h2.sql)
+  * [Demo data Query](https://github.com/Silinde87/spring5-gameaffinity/blob/master/src/main/resources/data-h2.sql)
 
 ### Installation & use
 
