@@ -1,8 +1,13 @@
 package spring5.silinde87.gameaffinity.ui.views;
 
-import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.Composite;
+import com.vaadin.flow.component.HasComponents;
+import com.vaadin.flow.component.html.Image;
+import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.data.renderer.ComponentRenderer;
 import com.vaadin.flow.data.renderer.TextRenderer;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -17,7 +22,7 @@ import spring5.silinde87.gameaffinity.ui.MainView;
 @Route(value = "games", layout = MainView.class)
 @PageTitle("Games List")
 @RouteAlias(value = "", layout = MainView.class)
-public class  GameCrudView extends HorizontalLayout {
+public class  GameCrudView extends Composite<HorizontalLayout> implements HasComponents {
 
     public GameCrudView(GameServiceImpl gameService, DeveloperServiceImpl developerService,
                         ProducerServiceImpl producerService, GenreServiceImpl genreService,
@@ -37,6 +42,25 @@ public class  GameCrudView extends HorizontalLayout {
         //Grid Configuration
         crud.getGrid().setColumns("name", "developer", "producer", "genre", "platform", "releaseDate");
         crud.getGrid().getColumns().forEach(col -> col.setAutoWidth(true).setSortable(true));
+
+        //Show description and image
+        crud.getGrid().setItemDetailsRenderer(new ComponentRenderer<>(game -> {
+            if(game.getDescription() == null || game.getImageUrl() == null){
+                Label notFoundLabel = new Label("There is no description or image.");
+                notFoundLabel.getStyle().set("alignSelf", "center");
+                HorizontalLayout labelLayout = new HorizontalLayout(notFoundLabel);
+                labelLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+                return labelLayout;
+            }else {
+                Image frontImage = new Image();
+                frontImage.setSrc(game.getImageUrl());
+                frontImage.setWidth("192px");
+                frontImage.setHeight("108px");
+                Label descriptionLabel = new Label(game.getDescription());
+                descriptionLabel.setHeight("200px");
+                return new HorizontalLayout(frontImage, descriptionLabel);
+            }
+        }));
 
         //Form Configuration
         crud.getCrudFormFactory().setUseBeanValidation(true);
@@ -70,7 +94,7 @@ public class  GameCrudView extends HorizontalLayout {
 
 
         //Layout Configuration
-        setSizeFull();
+        getContent().setSizeFull();
         add(crud);
 
 
