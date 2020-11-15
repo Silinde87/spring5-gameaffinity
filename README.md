@@ -44,7 +44,7 @@
 This is a web application that has been developed for learning purposes, in this you can handle CRUD operations in a SQL database.
 During development, I've deployed a docker container creating a local MySQL server.
 
-I've being using Test Development Driven during the process to check everything is fine. 
+I've being using Test Development Driven and Continuous Integration during the process to check everything is fine. 
 Check the tests [here](https://github.com/Silinde87/spring5-gameaffinity/tree/master/src/test/java/spring5/silinde87/gameaffinity/backend).
 
 
@@ -67,9 +67,9 @@ Features:
 ### Prerequisites
 
 * Deploy a MySQL instance on a Docker Container. [More information](https://hub.docker.com/_/mysql)
->```sh
->$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
->```
+```sh
+$ docker run --name some-mysql -e MYSQL_ROOT_PASSWORD=my-secret-pw -d mysql:tag
+```
 * Create and configure the DB using the scripts included in repository.
 
 
@@ -85,17 +85,17 @@ Features:
 ### Installation & use
 
 * Clone the repo
->```sh
->git clone https://github.com/Silinde87/spring5-gameaffinity.git
->```
+```sh
+git clone https://github.com/Silinde87/spring5-gameaffinity.git
+```
 * Install NPM packages
->```sh
->npm install
->```
+```sh
+npm install
+```
 * Run the App
->```sh
->mvn spring-boot:run -Dspring-boot.run.profiles=dev
->```
+```sh
+mvn spring-boot:run -Dspring-boot.run.profiles=dev
+```
 
 
 <!-- ROADMAP -->
