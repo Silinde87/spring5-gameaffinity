@@ -3,7 +3,6 @@ package spring5.silinde87.gameaffinity.backend.domain;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
@@ -26,6 +25,12 @@ public class Game {
     @Column(name = "name")
     private String name;
 
+    @Lob
+    @Column(name = "description", columnDefinition = "BLOB")
+    private String description;
+
+    @Column(name = "image_url")
+    private String imageUrl;
 
     @Past(message = "fecha debe ser anterior a la actual")
     @NotNull(message = "no puede estar vacío")
